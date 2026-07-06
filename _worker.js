@@ -44,11 +44,27 @@ async function handleLead(request, env) {
   }
 }
 
-const VERSION = 'v8-fetchtest';
+const VERSION = 'v9-send2';
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === '/api/send2') {
+      try {
+        const token = (env.TELEGRAM_BOT_TOKEN || '').trim();
+        const chatId = (env.TELEGRAM_CHAT_ID || '').trim();
+        const r = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: chatId, text: 'senatex worker diagnostic' }),
+          signal: AbortSignal.timeout(8000),
+        });
+        const t = await r.text();
+        return new Response(JSON.stringify({ ok: true, status: r.status, body: t.slice(0, 300) }), { headers: { 'Content-Type': 'application/json' } });
+      } catch (e) {
+        return new Response(JSON.stringify({ ok: false, err: (e && e.name) + ': ' + (e && e.message) }), { headers: { 'Content-Type': 'application/json' } });
+      }
+    }
     if (url.pathname === '/api/fetchtest') {
       const target = url.searchParams.get('url') || 'https://example.com';
       try {
