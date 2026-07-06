@@ -44,13 +44,15 @@ async function handleLead(request, env) {
   }
 }
 
+const VERSION = 'v7-telegram-timeout';
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === '/api/ping') {
       const hasTok = !!(env.TELEGRAM_BOT_TOKEN || '').trim();
       const hasChat = !!(env.TELEGRAM_CHAT_ID || '').trim();
-      return new Response(JSON.stringify({ ok: true, hasTok, hasChat }), {
+      return new Response(JSON.stringify({ ok: true, version: VERSION, hasTok, hasChat }), {
         headers: { 'Content-Type': 'application/json' },
       });
     }
