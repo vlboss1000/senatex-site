@@ -1,0 +1,569 @@
+<title>Senatex Group — Real Estate in Phuket, Thailand</title>
+<style>
+  :root{
+    --sand:#F5F1E9; --paper:#FBF9F4; --ink:#16211D; --ink-soft:#4C554F;
+    --sea:#0D6E64; --sea-deep:#094E47; --sea-bright:#12897C;
+    --gold:#B98A44; --line:#E3DCCE; --surface:#FFFFFF;
+    --shadow:0 18px 46px -24px rgba(9,46,41,.34);
+    --maxw:1120px; --r:16px;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"URW Palladio L",Georgia,serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --sand:#0E1613; --paper:#0B1210; --ink:#EDE7DA; --ink-soft:#A7B0A9;
+      --sea:#2AA899; --sea-deep:#0C1D1A; --sea-bright:#3FC4B3;
+      --gold:#D8AC63; --line:#243330; --surface:#141F1B;
+      --shadow:0 20px 50px -26px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --sand:#0E1613; --paper:#0B1210; --ink:#EDE7DA; --ink-soft:#A7B0A9;
+    --sea:#2AA899; --sea-deep:#0C1D1A; --sea-bright:#3FC4B3;
+    --gold:#D8AC63; --line:#243330; --surface:#141F1B;
+    --shadow:0 20px 50px -26px rgba(0,0,0,.7);
+  }
+  :root[data-theme="light"]{
+    --sand:#F5F1E9; --paper:#FBF9F4; --ink:#16211D; --ink-soft:#4C554F;
+    --sea:#0D6E64; --sea-deep:#094E47; --sea-bright:#12897C;
+    --gold:#B98A44; --line:#E3DCCE; --surface:#FFFFFF;
+    --shadow:0 18px 46px -24px rgba(9,46,41,.34);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--sans);
+    font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1;text-wrap:balance;margin:0}
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:var(--sans);text-transform:uppercase;letter-spacing:.18em;
+    font-size:12px;font-weight:600;color:var(--gold)}
+  .lead{color:var(--ink-soft);font-size:1.06rem;max-width:60ch}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--sand) 86%,transparent);
+    backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s,padding .3s}
+  header.scrolled{border-color:var(--line)}
+  .bar{display:flex;align-items:center;gap:24px;height:68px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-size:1.18rem;
+    font-weight:600;letter-spacing:.01em;white-space:nowrap}
+  .brand svg{width:30px;height:30px;flex:none}
+  .brand small{display:block;font-family:var(--sans);font-size:9.5px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:1px}
+  nav.main{display:flex;gap:26px;margin-left:auto;font-size:14.5px;font-weight:500}
+  nav.main a{color:var(--ink-soft);transition:color .2s}
+  nav.main a:hover{color:var(--sea)}
+  .langs{display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px;margin-left:8px}
+  .langs button{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.03em;
+    border:0;background:transparent;color:var(--ink-soft);padding:5px 10px;border-radius:999px;cursor:pointer;transition:.2s}
+  .langs button[aria-pressed="true"]{background:var(--sea);color:#fff}
+  @media(max-width:860px){nav.main{display:none}.bar{gap:12px}}
+
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;
+    font-size:15px;padding:13px 24px;border-radius:999px;cursor:pointer;border:1px solid transparent;transition:.22s}
+  .btn-primary{background:var(--sea);color:#fff}
+  .btn-primary:hover{background:var(--sea-deep);transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--sea);color:var(--sea)}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:var(--sea-deep)}
+  .hero-photo{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover}
+  .hero-scene{position:absolute;inset:0;z-index:0;width:100%;height:100%}
+  .hero-scrim{position:absolute;inset:0;z-index:2;
+    background:linear-gradient(90deg, rgba(5,38,34,.78) 0%, rgba(5,38,34,.42) 44%, rgba(5,38,34,.05) 78%),
+      linear-gradient(180deg, rgba(5,38,34,.32), transparent 28%)}
+  .hero-wave{position:absolute;left:0;right:0;bottom:-1px;z-index:4;width:100%;height:120px;display:block}
+  .hero-inner{position:relative;z-index:5;padding:118px 0 150px}
+  .hero .eyebrow{color:#F0E4CB}
+  .hero h1{color:#fff;font-size:clamp(2.5rem,6vw,4.3rem);letter-spacing:-.01em;margin:16px 0 0;max-width:15ch}
+  .hero .lead{color:rgba(255,255,255,.92);margin-top:20px;font-size:1.15rem;max-width:52ch}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+  .hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.55)}
+  .hero .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff;color:#fff}
+  .trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:40px}
+  .trust li{display:flex;align-items:center;gap:9px;color:rgba(255,255,255,.94);font-size:14.5px;list-style:none}
+  .trust svg{width:18px;height:18px;color:#F0E4CB;flex:none}
+  .trust ul{display:contents}
+
+  section{padding:88px 0}
+  .sec-head{max-width:60ch;margin-bottom:40px}
+  .sec-head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin:12px 0 14px}
+
+  /* catalog */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+    box-shadow:var(--shadow);transition:transform .28s,box-shadow .28s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 26px 54px -24px rgba(9,46,41,.4)}
+  .ph{position:relative;aspect-ratio:4/3;display:flex;align-items:flex-end;padding:14px;
+    background:linear-gradient(160deg,var(--sea-bright),var(--sea-deep))}
+  .card:nth-child(2) .ph{background:linear-gradient(160deg,#2E8C9E,#0E4A55)}
+  .card:nth-child(3) .ph{background:linear-gradient(160deg,#3FA090,#0B5347)}
+  .card:nth-child(4) .ph{background:linear-gradient(160deg,#C79A5A,#7A5A2A)}
+  .card:nth-child(5) .ph{background:linear-gradient(160deg,#4E9AA6,#124A52)}
+  .card:nth-child(6) .ph{background:linear-gradient(160deg,#2C8A76,#0A4D42)}
+  .ph svg.scene{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+  .ph .demo{position:relative;z-index:2;font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.28);
+    padding:5px 11px;border-radius:999px;backdrop-filter:blur(3px)}
+  .card-body{padding:20px 20px 22px}
+  .card-body .dist{font-family:var(--sans);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .card-body h3{font-size:1.28rem;margin:7px 0 12px}
+  .card-meta{display:flex;gap:16px;color:var(--ink-soft);font-size:14px;margin-bottom:16px}
+  .card-foot{display:flex;align-items:center;justify-content:space-between;
+    border-top:1px solid var(--line);padding-top:15px}
+  .price{font-family:var(--serif);font-size:1.2rem;font-weight:600}
+  .price span{font-family:var(--sans);font-size:11px;color:var(--ink-soft);display:block;letter-spacing:.08em;text-transform:uppercase}
+  .card-foot a{font-size:14px;font-weight:600;color:var(--sea);display:inline-flex;align-items:center;gap:6px}
+
+  /* services */
+  .services{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  @media(max-width:720px){.svc-grid{grid-template-columns:1fr}}
+  .svc{background:var(--surface);padding:32px 30px}
+  .svc .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+    background:color-mix(in srgb,var(--sea) 12%,transparent);color:var(--sea);margin-bottom:16px}
+  .svc .ic svg{width:22px;height:22px}
+  .svc h3{font-size:1.24rem;margin-bottom:8px}
+  .svc p{color:var(--ink-soft);font-size:15.5px}
+
+  /* process */
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;counter-reset:s}
+  @media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.steps{grid-template-columns:1fr}}
+  .step{position:relative;padding-top:22px;border-top:2px solid var(--line)}
+  .step::before{counter-increment:s;content:"0" counter(s);position:absolute;top:-15px;left:0;
+    font-family:var(--serif);font-size:1.5rem;color:var(--sea);background:var(--sand);padding-right:10px}
+  .step h3{font-size:1.08rem;margin-bottom:6px}
+  .step p{color:var(--ink-soft);font-size:14.5px}
+
+  /* about */
+  .about{background:var(--sea-deep);color:#fff;border-radius:var(--r);padding:56px;
+    display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center}
+  @media(prefers-color-scheme:dark){.about{background:#0F2723;border:1px solid var(--line)}}
+  :root[data-theme="dark"] .about{background:#0F2723;border:1px solid var(--line)}
+  @media(max-width:760px){.about{grid-template-columns:1fr;padding:36px}}
+  .about h2{color:#fff;font-size:clamp(1.8rem,3.4vw,2.5rem);margin-bottom:16px}
+  .about p{color:rgba(255,255,255,.9)}
+  .about .eyebrow{color:var(--gold)}
+  .facts{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+  .facts li{display:flex;flex-direction:column;gap:2px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.16)}
+  .facts .k{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+  .facts .v{font-size:16px;color:#fff;font-weight:500}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+  @media(max-width:760px){.contact-grid{grid-template-columns:1fr;gap:32px}}
+  form{display:grid;gap:16px;background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .field{display:grid;gap:6px}
+  .field label{font-size:13px;font-weight:600;color:var(--ink-soft)}
+  input,select,textarea{font-family:var(--sans);font-size:15.5px;color:var(--ink);
+    background:var(--sand);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%}
+  textarea{resize:vertical;min-height:88px}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px;border-color:transparent}
+  .form-note{font-size:12.5px;color:var(--ink-soft)}
+  .form-ok{display:none;background:color-mix(in srgb,var(--sea) 14%,transparent);color:var(--sea);
+    border:1px solid var(--sea);border-radius:10px;padding:12px 14px;font-size:14px;font-weight:600}
+  .contact-side .lead{margin-bottom:24px}
+  .cinfo{list-style:none;padding:0;margin:0;display:grid;gap:16px}
+  .cinfo li{display:flex;gap:13px;align-items:flex-start}
+  .cinfo svg{width:20px;height:20px;color:var(--sea);flex:none;margin-top:3px}
+  .cinfo .k{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .cinfo .v{font-size:15.5px}
+
+  /* footer */
+  footer{background:var(--ink);color:#cfd6cf;padding:56px 0 30px;margin-top:0}
+  @media(prefers-color-scheme:dark){footer{background:#070C0A;border-top:1px solid var(--line)}}
+  :root[data-theme="dark"] footer{background:#070C0A;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;padding-bottom:36px;
+    border-bottom:1px solid rgba(255,255,255,.12)}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:26px}}
+  footer .brand{color:#fff;margin-bottom:14px}
+  footer .brand small{color:#8f988f}
+  .foot-col h4{font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:#8f988f;font-weight:700;margin:0 0 14px}
+  .foot-col p,.foot-col a{font-size:14px;color:#cfd6cf;line-height:1.7;display:block}
+  .foot-col a:hover{color:#fff}
+  .reg{font-size:13.5px;color:#aeb6ae;line-height:1.75;max-width:34ch}
+  .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    padding-top:22px;font-size:12.5px;color:#8f988f}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+    .card:hover,.btn-primary:hover{transform:none}
+  }
+</style>
+
+<header id="hdr">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Senatex Group">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M4 26 L20 12 L36 26" stroke="var(--sea)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 33c4 0 4-2.4 8-2.4s4 2.4 8 2.4 4-2.4 8-2.4 4 2.4 8 2.4" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round"/>
+        <rect x="14" y="20" width="12" height="9" rx="1" stroke="var(--sea)" stroke-width="2"/>
+      </svg>
+      <span>Senatex Group<small>Phuket Real Estate</small></span>
+    </a>
+    <nav class="main">
+      <a href="#catalog" data-i18n="nav_catalog">Объекты</a>
+      <a href="#services" data-i18n="nav_services">Услуги</a>
+      <a href="#process" data-i18n="nav_process">Как проходит сделка</a>
+      <a href="#about" data-i18n="nav_about">О компании</a>
+      <a href="#contact" data-i18n="nav_contact">Контакты</a>
+    </nav>
+    <div class="langs" role="group" aria-label="Language">
+      <button data-lang="ru" aria-pressed="true">RU</button>
+      <button data-lang="en" aria-pressed="false">EN</button>
+      <button data-lang="th" aria-pressed="false">TH</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding:0">
+    <img class="hero-photo" src="assets/hero.jpg" alt="Вилла Senatex Group на Пхукете">
+    <svg class="hero-scene" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F7DBA8"/><stop offset=".38" stop-color="#E9C6AE"/>
+          <stop offset=".72" stop-color="#82BCC2"/><stop offset="1" stop-color="#3E93A0"/>
+        </linearGradient>
+        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2E90A1"/><stop offset="1" stop-color="#116E77"/>
+        </linearGradient>
+        <linearGradient id="pool" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7BD8D3"/><stop offset="1" stop-color="#2AA4A8"/>
+        </linearGradient>
+        <linearGradient id="deck" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#DCBD90"/><stop offset="1" stop-color="#C29B6A"/>
+        </linearGradient>
+        <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="#FFF6E4"/><stop offset=".5" stop-color="#FFE3AE"/>
+          <stop offset="1" stop-color="#FFE3AE" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="1440" height="470" fill="url(#sky)"/>
+      <circle cx="1130" cy="150" r="250" fill="url(#sun)"/>
+      <circle cx="1130" cy="150" r="58" fill="#FFF7E8"/>
+      <rect y="356" width="1440" height="190" fill="url(#sea)"/>
+      <path d="M120 356 q90 -44 200 -28 q80 12 150 28 Z" fill="#2E7E86" opacity=".65"/>
+      <path d="M980 356 q120 -32 260 -12 l0 12 Z" fill="#256E77" opacity=".8"/>
+      <rect x="1070" y="356" width="120" height="180" fill="#FFE9C0" opacity=".26"/>
+      <path d="M0 500 L1440 468 L1440 760 L0 760 Z" fill="url(#deck)"/>
+      <rect x="1176" y="322" width="264" height="164" fill="#F2ECE0"/>
+      <rect x="1176" y="308" width="284" height="20" fill="#E4DACB"/>
+      <rect x="1206" y="356" width="72" height="130" fill="#2C4A4C"/>
+      <rect x="1300" y="356" width="72" height="130" fill="#3A5D5E"/>
+      <path d="M110 560 Q740 498 1382 540 L1440 760 L50 760 Z" fill="url(#pool)"/>
+      <path d="M110 560 Q740 498 1382 540" fill="none" stroke="#EAF7F4" stroke-width="4" opacity=".55"/>
+      <path d="M300 646 q120 -14 240 0" stroke="#CDEFEA" stroke-width="3" fill="none" opacity=".5"/>
+      <path d="M780 686 q140 -14 280 0" stroke="#CDEFEA" stroke-width="3" fill="none" opacity=".42"/>
+      <g fill="#FBF7EE">
+        <rect x="360" y="602" width="120" height="18" rx="6"/><rect x="360" y="590" width="34" height="28" rx="6"/>
+        <rect x="540" y="602" width="120" height="18" rx="6"/><rect x="540" y="590" width="34" height="28" rx="6"/>
+      </g>
+      <rect x="694" y="536" width="6" height="84" fill="#8A6A44"/>
+      <path d="M642 542 q56 -46 112 0 Z" fill="#D98C5A"/>
+      <path d="M1120 760 Q1152 520 1130 428" stroke="#173B36" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <g fill="#1C463F">
+        <path d="M1130 428 q-72 -30 -122 -4 q62 -8 122 26 Z"/>
+        <path d="M1130 428 q72 -30 122 -4 q-62 -8 -122 26 Z"/>
+        <path d="M1130 428 q-30 -72 -82 -94 q32 56 62 110 Z"/>
+        <path d="M1130 428 q30 -72 82 -94 q-32 56 -62 110 Z"/>
+      </g>
+    </svg>
+    <div class="hero-scrim"></div>
+    <svg class="hero-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 110 480 10 720 50 C 960 90 1200 20 1440 60 L1440 120 L0 120 Z" fill="var(--sand)"/>
+    </svg>
+    <div class="wrap hero-inner">
+      <p class="eyebrow" data-i18n="hero_eyebrow">Пхукет · Таиланд</p>
+      <h1 data-i18n="hero_h1">Недвижимость на Пхукете под ключ</h1>
+      <p class="lead" data-i18n="hero_sub">Виллы, апартаменты и таунхаусы у Андаманского моря. Подбор объекта, юридическое сопровождение сделки и передача ключей — на русском, английском и тайском.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#contact" data-i18n="hero_cta1">Подобрать объект</a>
+        <a class="btn btn-ghost" href="#catalog" data-i18n="hero_cta2">Смотреть каталог</a>
+      </div>
+      <ul class="trust">
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V5l7-3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="trust_1">Лицензированная тайская компания</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="trust_2">Сопровождение сделки под ключ</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg><span data-i18n="trust_3">Офис на Пхукете, Cherng Talay</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="catalog">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow" data-i18n="cat_eyebrow">Каталог</p>
+        <h2 data-i18n="cat_title">Объекты на Пхукете</h2>
+        <p class="lead" data-i18n="cat_sub">Пример подборки по районам острова. Скоро здесь появятся реальные объекты с фото, планировками и ценами.</p>
+      </div>
+      <div class="grid" id="cards"></div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow" data-i18n="svc_eyebrow">Услуги</p>
+        <h2 data-i18n="svc_title">Ведём сделку от подбора до ключей</h2>
+      </div>
+      <div class="svc-grid reveal">
+        <div class="svc">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3 data-i18n="svc1_t">Подбор объекта</h3>
+          <p data-i18n="svc1_d">Подберём виллу или апартаменты под ваш бюджет, район и задачу — для жизни или отдыха.</p>
+        </div>
+        <div class="svc">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+          <h3 data-i18n="svc2_t">Юридическая проверка</h3>
+          <p data-i18n="svc2_d">Проверим объект и застройщика, объясним freehold и leasehold, подготовим договор.</p>
+        </div>
+        <div class="svc">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 10h18" stroke="currentColor" stroke-width="2"/></svg></div>
+          <h3 data-i18n="svc3_t">Сделка и оплата</h3>
+          <p data-i18n="svc3_d">Сопроводим оплату и регистрацию в Земельном департаменте, поможем с переводом средств.</p>
+        </div>
+        <div class="svc">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M7 11V8a5 5 0 0110 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/></svg></div>
+          <h3 data-i18n="svc4_t">Передача и заселение</h3>
+          <p data-i18n="svc4_d">Передадим ключи, поможем подключить коммунальные услуги и меблировать жильё.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow" data-i18n="proc_eyebrow">Порядок</p>
+        <h2 data-i18n="proc_title">Как проходит покупка</h2>
+      </div>
+      <div class="steps reveal">
+        <div class="step"><h3 data-i18n="step1_t">Заявка</h3><p data-i18n="step1_d">Оставляете контакт и бюджет — перезвоним в тот же день.</p></div>
+        <div class="step"><h3 data-i18n="step2_t">Подборка</h3><p data-i18n="step2_d">Присылаем варианты под ваш запрос с фото и ценами.</p></div>
+        <div class="step"><h3 data-i18n="step3_t">Просмотр</h3><p data-i18n="step3_d">Смотрите объекты очно на Пхукете или онлайн по видео.</p></div>
+        <div class="step"><h3 data-i18n="step4_t">Проверка и бронь</h3><p data-i18n="step4_d">Юрист проверяет объект, вносим депозит и бронируем.</p></div>
+        <div class="step"><h3 data-i18n="step5_t">Сделка</h3><p data-i18n="step5_d">Подписание, регистрация и передача ключей вам.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="about reveal">
+        <div>
+          <p class="eyebrow" data-i18n="about_eyebrow">О компании</p>
+          <h2 data-i18n="about_title">Senatex Group — недвижимость на Пхукете</h2>
+          <p data-i18n="about_p">Мы — официально зарегистрированная компания в Таиланде с офисом в районе Cherng Talay, Thalang. Помогаем покупателям из-за рубежа приобрести недвижимость на Пхукете безопасно, прозрачно и без языкового барьера — сопровождаем на русском, английском и тайском.</p>
+        </div>
+        <ul class="facts">
+          <li><span class="k" data-i18n="fact_reg_k">Регистрационный номер</span><span class="v">0205566011738</span></li>
+          <li><span class="k" data-i18n="fact_addr_k">Офис</span><span class="v">Cherng Talay, Thalang, Phuket</span></li>
+          <li><span class="k" data-i18n="fact_lang_k">Языки сопровождения</span><span class="v">RU · EN · TH</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-side reveal">
+          <p class="eyebrow" data-i18n="ct_eyebrow">Контакты</p>
+          <h2 style="font-size:clamp(1.8rem,3.4vw,2.5rem);margin:12px 0 14px" data-i18n="ct_title">Оставьте заявку</h2>
+          <p class="lead" data-i18n="ct_sub">Расскажите, что ищете, — пришлём подборку объектов под ваш бюджет и район.</p>
+          <ul class="cinfo">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg><div><div class="k" data-i18n="ct_addr_k">Адрес</div><span class="v">1, Pa Sak-Kok Ton Rd, Cherng Talay, Thalang, Phuket 83110</span></div></li>
+            <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><div class="k" data-i18n="ct_resp_k">Ответ на заявку</div><span class="v" data-i18n="ct_resp_v">В течение рабочего дня</span></div></li>
+          </ul>
+        </div>
+        <form class="reveal" id="lead" novalidate>
+          <div class="field"><label for="nm" data-i18n="f_name">Ваше имя</label><input id="nm" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="ph" data-i18n="f_phone">Телефон или WhatsApp / Telegram</label><input id="ph" name="phone" autocomplete="tel" required></div>
+          <div class="field"><label for="bg" data-i18n="f_budget">Бюджет</label>
+            <select id="bg" name="budget">
+              <option data-i18n="f_b0">Не определился</option>
+              <option>до ฿10M</option><option>฿10M – ฿25M</option><option>฿25M – ฿50M</option><option>฿50M+</option>
+            </select>
+          </div>
+          <div class="field"><label for="ms" data-i18n="f_msg">Что ищете (район, тип, спальни)</label><textarea id="ms" name="message"></textarea></div>
+          <button type="submit" class="btn btn-primary" style="justify-content:center" data-i18n="f_submit">Отправить заявку</button>
+          <p class="form-note" data-i18n="f_note">Нажимая кнопку, вы соглашаетесь с обработкой данных согласно политике конфиденциальности.</p>
+          <div class="form-ok" id="ok" data-i18n="f_ok">Спасибо! Заявка отправлена — мы свяжемся с вами в ближайшее время.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="brand">
+          <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <path d="M4 26 L20 12 L36 26" stroke="var(--sea)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 33c4 0 4-2.4 8-2.4s4 2.4 8 2.4 4-2.4 8-2.4 4 2.4 8 2.4" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round"/>
+            <rect x="14" y="20" width="12" height="9" rx="1" stroke="var(--sea)" stroke-width="2"/>
+          </svg>
+          <span>Senatex Group<small>Phuket Real Estate</small></span>
+        </div>
+        <p class="reg">Senatex Group Co., Ltd<br>1, Pa Sak-Kok Ton Road, Cheng Talay Subdistrict, Thalang District, Phuket 83110, Thailand<br><span data-i18n="foot_reg">Рег. номер: 0205566011738</span></p>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot_nav">Разделы</h4>
+        <a href="#catalog" data-i18n="nav_catalog">Объекты</a>
+        <a href="#services" data-i18n="nav_services">Услуги</a>
+        <a href="#process" data-i18n="nav_process">Как проходит сделка</a>
+        <a href="#about" data-i18n="nav_about">О компании</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot_contact">Контакты</h4>
+        <a href="#contact" data-i18n="foot_leave">Оставить заявку</a>
+        <p data-i18n="foot_office">Офис: Cherng Talay, Thalang, Phuket</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Senatex Group Co., Ltd</span>
+      <span data-i18n="foot_rights">Все права защищены · senatex.site</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const DISTRICTS = [
+    {d:"Layan Beach", ru:"Вилла с бассейном", en:"Pool villa", th:"วิลล่าพร้อมสระ", beds:"3", price:"฿25,000,000"},
+    {d:"Bang Tao",    ru:"Апартаменты",       en:"Apartment", th:"อพาร์ตเมนต์",   beds:"2", price:"฿9,500,000"},
+    {d:"Surin",       ru:"Вилла у моря",      en:"Seaview villa", th:"วิลล่าวิวทะเล", beds:"4", price:"฿48,000,000"},
+    {d:"Kamala",      ru:"Таунхаус",          en:"Townhouse", th:"ทาวน์เฮาส์",   beds:"3", price:"฿14,000,000"},
+    {d:"Rawai",       ru:"Апартаменты",       en:"Apartment", th:"อพาร์ตเมนต์",   beds:"1", price:"฿5,900,000"},
+    {d:"Nai Harn",    ru:"Вилла с садом",     en:"Garden villa", th:"วิลล่าพร้อมสวน", beds:"3", price:"฿19,000,000"}
+  ];
+  const SCENE = '<svg class="scene" viewBox="0 0 100 75" preserveAspectRatio="none" aria-hidden="true"><path d="M0 55 L30 34 L60 55 Z" fill="rgba(255,255,255,.14)"/><rect x="22" y="48" width="30" height="20" fill="rgba(255,255,255,.10)"/><path d="M0 70 q25 -8 50 0 t50 0 V75 H0 Z" fill="rgba(255,255,255,.16)"/><circle cx="82" cy="18" r="8" fill="rgba(255,255,255,.18)"/></svg>';
+
+  const T = {
+    ru:{nav_catalog:"Объекты",nav_services:"Услуги",nav_process:"Как проходит сделка",nav_about:"О компании",nav_contact:"Контакты",
+      hero_eyebrow:"Пхукет · Таиланд",hero_h1:"Недвижимость на Пхукете под ключ",hero_sub:"Виллы, апартаменты и таунхаусы у Андаманского моря. Подбор объекта, юридическое сопровождение сделки и передача ключей — на русском, английском и тайском.",hero_cta1:"Подобрать объект",hero_cta2:"Смотреть каталог",
+      trust_1:"Лицензированная тайская компания",trust_2:"Сопровождение сделки под ключ",trust_3:"Офис на Пхукете, Cherng Talay",
+      cat_eyebrow:"Каталог",cat_title:"Объекты на Пхукете",cat_sub:"Пример подборки по районам острова. Скоро здесь появятся реальные объекты с фото, планировками и ценами.",
+      svc_eyebrow:"Услуги",svc_title:"Ведём сделку от подбора до ключей",
+      svc1_t:"Подбор объекта",svc1_d:"Подберём виллу или апартаменты под ваш бюджет, район и задачу — для жизни или отдыха.",
+      svc2_t:"Юридическая проверка",svc2_d:"Проверим объект и застройщика, объясним freehold и leasehold, подготовим договор.",
+      svc3_t:"Сделка и оплата",svc3_d:"Сопроводим оплату и регистрацию в Земельном департаменте, поможем с переводом средств.",
+      svc4_t:"Передача и заселение",svc4_d:"Передадим ключи, поможем подключить коммунальные услуги и меблировать жильё.",
+      proc_eyebrow:"Порядок",proc_title:"Как проходит покупка",
+      step1_t:"Заявка",step1_d:"Оставляете контакт и бюджет — перезвоним в тот же день.",step2_t:"Подборка",step2_d:"Присылаем варианты под ваш запрос с фото и ценами.",step3_t:"Просмотр",step3_d:"Смотрите объекты очно на Пхукете или онлайн по видео.",step4_t:"Проверка и бронь",step4_d:"Юрист проверяет объект, вносим депозит и бронируем.",step5_t:"Сделка",step5_d:"Подписание, регистрация и передача ключей вам.",
+      about_eyebrow:"О компании",about_title:"Senatex Group — недвижимость на Пхукете",about_p:"Мы — официально зарегистрированная компания в Таиланде с офисом в районе Cherng Talay, Thalang. Помогаем покупателям из-за рубежа приобрести недвижимость на Пхукете безопасно, прозрачно и без языкового барьера — сопровождаем на русском, английском и тайском.",
+      fact_reg_k:"Регистрационный номер",fact_dir_k:"Директор",fact_addr_k:"Офис",
+      ct_eyebrow:"Контакты",ct_title:"Оставьте заявку",ct_sub:"Расскажите, что ищете, — пришлём подборку объектов под ваш бюджет и район.",ct_phone_k:"Телефон · WhatsApp",ct_addr_k:"Адрес",
+      f_name:"Ваше имя",f_phone:"Телефон или WhatsApp / Telegram",f_budget:"Бюджет",f_b0:"Не определился",f_msg:"Что ищете (район, тип, спальни)",f_submit:"Отправить заявку",f_note:"Нажимая кнопку, вы соглашаетесь с обработкой данных согласно политике конфиденциальности.",f_ok:"Спасибо! Заявка отправлена — мы свяжемся с вами в ближайшее время.",
+      foot_reg:"Рег. номер: 0205566011738",foot_nav:"Разделы",foot_contact:"Контакты",foot_rights:"Все права защищены · senatex.site",
+      fact_lang_k:"Языки сопровождения",ct_resp_k:"Ответ на заявку",ct_resp_v:"В течение рабочего дня",foot_leave:"Оставить заявку",foot_office:"Офис: Cherng Talay, Thalang, Phuket",
+      m_bed:"спальни",m_from:"от"},
+    en:{nav_catalog:"Properties",nav_services:"Services",nav_process:"How it works",nav_about:"About",nav_contact:"Contact",
+      hero_eyebrow:"Phuket · Thailand",hero_h1:"Phuket real estate, handled end to end",hero_sub:"Villas, apartments and townhouses by the Andaman Sea. Property search, full legal support of the deal and key handover — in English, Russian and Thai.",hero_cta1:"Find a property",hero_cta2:"Browse catalogue",
+      trust_1:"Licensed Thai company",trust_2:"Full deal support, turnkey",trust_3:"Office in Cherng Talay, Phuket",
+      cat_eyebrow:"Catalogue",cat_title:"Properties in Phuket",cat_sub:"A sample selection by island district. Real listings with photos, floor plans and prices are coming soon.",
+      svc_eyebrow:"Services",svc_title:"From search to keys, we handle it all",
+      svc1_t:"Property search",svc1_d:"We match a villa or apartment to your budget, area and purpose — to live in or to holiday.",
+      svc2_t:"Legal due diligence",svc2_d:"We vet the property and developer, explain freehold vs leasehold and prepare the contract.",
+      svc3_t:"Deal & payment",svc3_d:"We support payment and registration at the Land Office and help with transferring funds.",
+      svc4_t:"Handover & move-in",svc4_d:"We hand over the keys and help connect utilities and furnish the home.",
+      proc_eyebrow:"Process",proc_title:"How buying works",
+      step1_t:"Request",step1_d:"Leave your contact and budget — we call back the same day.",step2_t:"Selection",step2_d:"We send options matching your brief, with photos and prices.",step3_t:"Viewing",step3_d:"View properties in person in Phuket or online by video.",step4_t:"Check & reserve",step4_d:"A lawyer vets the property, we place the deposit and reserve.",step5_t:"Closing",step5_d:"Signing, registration and key handover to you.",
+      about_eyebrow:"About",about_title:"Senatex Group — Phuket real estate",about_p:"We are an officially registered company in Thailand with an office in Cherng Talay, Thalang. We help overseas buyers purchase property in Phuket safely, transparently and without a language barrier — supporting you in English, Russian and Thai.",
+      fact_reg_k:"Registration number",fact_dir_k:"Director",fact_addr_k:"Office",
+      ct_eyebrow:"Contact",ct_title:"Send a request",ct_sub:"Tell us what you're looking for — we'll send a selection to fit your budget and area.",ct_phone_k:"Phone · WhatsApp",ct_addr_k:"Address",
+      f_name:"Your name",f_phone:"Phone or WhatsApp / Telegram",f_budget:"Budget",f_b0:"Not sure yet",f_msg:"What you're looking for (area, type, bedrooms)",f_submit:"Send request",f_note:"By submitting you agree to the processing of your data per our privacy policy.",f_ok:"Thank you! Your request has been sent — we'll be in touch shortly.",
+      foot_reg:"Reg. no.: 0205566011738",foot_nav:"Sections",foot_contact:"Contact",foot_rights:"All rights reserved · senatex.site",
+      fact_lang_k:"Support languages",ct_resp_k:"Response time",ct_resp_v:"Within one business day",foot_leave:"Send a request",foot_office:"Office: Cherng Talay, Thalang, Phuket",
+      m_bed:"bd",m_from:"from"},
+    th:{nav_catalog:"อสังหาริมทรัพย์",nav_services:"บริการ",nav_process:"ขั้นตอน",nav_about:"เกี่ยวกับเรา",nav_contact:"ติดต่อ",
+      hero_eyebrow:"ภูเก็ต · ประเทศไทย",hero_h1:"อสังหาริมทรัพย์ในภูเก็ต ครบวงจร",hero_sub:"วิลล่า อพาร์ตเมนต์ และทาวน์เฮาส์ริมทะเลอันดามัน ค้นหาทรัพย์ ดูแลด้านกฎหมายตลอดการทำสัญญา และส่งมอบกุญแจ — บริการภาษาไทย อังกฤษ และรัสเซีย",hero_cta1:"ค้นหาทรัพย์",hero_cta2:"ดูรายการทรัพย์",
+      trust_1:"บริษัทจดทะเบียนในประเทศไทย",trust_2:"ดูแลการซื้อขายครบวงจร",trust_3:"สำนักงานที่เชิงทะเล ภูเก็ต",
+      cat_eyebrow:"รายการทรัพย์",cat_title:"ทรัพย์ในภูเก็ต",cat_sub:"ตัวอย่างการคัดสรรตามทำเลบนเกาะ เร็ว ๆ นี้จะมีทรัพย์จริงพร้อมรูปภาพ แปลน และราคา",
+      svc_eyebrow:"บริการ",svc_title:"ดูแลตั้งแต่ค้นหาจนถึงรับกุญแจ",
+      svc1_t:"ค้นหาทรัพย์",svc1_d:"คัดสรรวิลล่าหรืออพาร์ตเมนต์ให้ตรงงบประมาณ ทำเล และเป้าหมายของคุณ",
+      svc2_t:"ตรวจสอบด้านกฎหมาย",svc2_d:"ตรวจสอบทรัพย์และผู้พัฒนา อธิบายกรรมสิทธิ์แบบ Freehold และ Leasehold พร้อมจัดทำสัญญา",
+      svc3_t:"ทำสัญญาและชำระเงิน",svc3_d:"ดูแลการชำระเงินและการโอนที่สำนักงานที่ดิน พร้อมช่วยเรื่องการโอนเงิน",
+      svc4_t:"ส่งมอบและเข้าอยู่",svc4_d:"ส่งมอบกุญแจ ช่วยติดตั้งสาธารณูปโภคและตกแต่งเฟอร์นิเจอร์",
+      proc_eyebrow:"ขั้นตอน",proc_title:"ขั้นตอนการซื้อ",
+      step1_t:"ส่งคำขอ",step1_d:"ทิ้งข้อมูลติดต่อและงบประมาณ เราติดต่อกลับในวันเดียวกัน",step2_t:"คัดเลือก",step2_d:"ส่งตัวเลือกตรงความต้องการ พร้อมรูปและราคา",step3_t:"เข้าชม",step3_d:"ชมทรัพย์ที่ภูเก็ตด้วยตนเองหรือออนไลน์ผ่านวิดีโอ",step4_t:"ตรวจสอบและจอง",step4_d:"ทนายตรวจสอบทรัพย์ วางเงินมัดจำและจอง",step5_t:"ปิดการขาย",step5_d:"เซ็นสัญญา จดทะเบียน และส่งมอบกุญแจให้คุณ",
+      about_eyebrow:"เกี่ยวกับเรา",about_title:"Senatex Group — อสังหาฯ ภูเก็ต",about_p:"เราเป็นบริษัทที่จดทะเบียนอย่างถูกต้องในประเทศไทย มีสำนักงานที่เชิงทะเล อำเภอถลาง เราช่วยผู้ซื้อจากต่างประเทศซื้ออสังหาริมทรัพย์ในภูเก็ตอย่างปลอดภัย โปร่งใส และไร้กำแพงภาษา — ให้บริการภาษาไทย อังกฤษ และรัสเซีย",
+      fact_reg_k:"เลขทะเบียน",fact_dir_k:"กรรมการ",fact_addr_k:"สำนักงาน",
+      ct_eyebrow:"ติดต่อ",ct_title:"ส่งคำขอ",ct_sub:"บอกเราว่าคุณกำลังมองหาอะไร เราจะส่งรายการที่ตรงงบและทำเลของคุณ",ct_phone_k:"โทร · WhatsApp",ct_addr_k:"ที่อยู่",
+      f_name:"ชื่อของคุณ",f_phone:"โทรศัพท์ หรือ WhatsApp / Telegram",f_budget:"งบประมาณ",f_b0:"ยังไม่แน่ใจ",f_msg:"สิ่งที่คุณมองหา (ทำเล ประเภท ห้องนอน)",f_submit:"ส่งคำขอ",f_note:"เมื่อกดส่ง ถือว่าคุณยอมรับการประมวลผลข้อมูลตามนโยบายความเป็นส่วนตัว",f_ok:"ขอบคุณ! ส่งคำขอเรียบร้อยแล้ว เราจะติดต่อกลับโดยเร็ว",
+      foot_reg:"เลขทะเบียน: 0205566011738",foot_nav:"หมวด",foot_contact:"ติดต่อ",foot_rights:"สงวนลิขสิทธิ์ · senatex.site",
+      fact_lang_k:"ภาษาที่ให้บริการ",ct_resp_k:"เวลาตอบกลับ",ct_resp_v:"ภายในหนึ่งวันทำการ",foot_leave:"ส่งคำขอ",foot_office:"สำนักงาน: เชิงทะเล ถลาง ภูเก็ต",
+      m_bed:"ห้องนอน",m_from:"เริ่มต้น"}
+  };
+
+  let lang="ru";
+  const DEMO={ru:"Демо-объект",en:"Demo listing",th:"ทรัพย์ตัวอย่าง"};
+
+  function renderCards(){
+    const el=document.getElementById("cards");
+    el.innerHTML=DISTRICTS.map(o=>`
+      <article class="card">
+        <div class="ph">${SCENE}<span class="demo">${DEMO[lang]}</span></div>
+        <div class="card-body">
+          <div class="dist">${o.d}</div>
+          <h3>${o[lang]}</h3>
+          <div class="card-meta"><span>${o.beds} ${T[lang].m_bed}</span></div>
+          <div class="card-foot">
+            <div class="price"><span>${T[lang].m_from}</span>${o.price}</div>
+            <a href="#contact">${T[lang].nav_contact} →</a>
+          </div>
+        </div>
+      </article>`).join("");
+  }
+
+  function apply(l){
+    lang=l;
+    document.documentElement.lang=l;
+    document.querySelectorAll("[data-i18n]").forEach(n=>{
+      const k=n.getAttribute("data-i18n"); if(T[l][k]!==undefined) n.textContent=T[l][k];
+    });
+    document.querySelectorAll(".langs button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.lang===l));
+    renderCards();
+  }
+
+  document.querySelectorAll(".langs button").forEach(b=>b.addEventListener("click",()=>apply(b.dataset.lang)));
+
+  // Пока файла фото нет (assets/hero.jpg) — показываем рисованную сцену как запасной вариант
+  const hp=document.querySelector(".hero-photo");
+  if(hp) hp.addEventListener("error",()=>hp.remove());
+
+  const hdr=document.getElementById("hdr");
+  addEventListener("scroll",()=>hdr.classList.toggle("scrolled",scrollY>10),{passive:true});
+
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(n=>io.observe(n));
+
+  document.getElementById("lead").addEventListener("submit",async e=>{
+    e.preventDefault();
+    const f=e.target;
+    if(!f.checkValidity()){f.reportValidity();return;}
+    const btn=f.querySelector("button[type=submit]");
+    btn.disabled=true;
+    const data=Object.fromEntries(new FormData(f).entries());
+    data.lang=lang; data.page="senatex.site";
+    try{ await fetch("/api/lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)}); }catch(_){}
+    document.getElementById("ok").style.display="block";
+    btn.style.display="none";
+  });
+
+  apply("ru");
+</script>
