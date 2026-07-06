@@ -44,11 +44,20 @@ async function handleLead(request, env) {
   }
 }
 
-const VERSION = 'v7-telegram-timeout';
+const VERSION = 'v8-fetchtest';
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === '/api/fetchtest') {
+      const target = url.searchParams.get('url') || 'https://example.com';
+      try {
+        const r = await fetch(target, { signal: AbortSignal.timeout(8000) });
+        return new Response(JSON.stringify({ ok: true, status: r.status, target }), { headers: { 'Content-Type': 'application/json' } });
+      } catch (e) {
+        return new Response(JSON.stringify({ ok: false, err: (e && e.name) + ': ' + (e && e.message), target }), { headers: { 'Content-Type': 'application/json' } });
+      }
+    }
     if (url.pathname === '/api/ping') {
       const hasTok = !!(env.TELEGRAM_BOT_TOKEN || '').trim();
       const hasChat = !!(env.TELEGRAM_CHAT_ID || '').trim();
