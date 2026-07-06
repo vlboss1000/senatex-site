@@ -44,11 +44,26 @@ async function handleLead(request, env) {
   }
 }
 
-const VERSION = 'v9-send2';
+const VERSION = 'v10-updates';
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === '/api/updates') {
+      try {
+        const token = (env.TELEGRAM_BOT_TOKEN || '').trim();
+        const r = await fetch(`https://api.telegram.org/bot${token}/getUpdates`, { signal: AbortSignal.timeout(8000) });
+        const data = await r.json();
+        const chats = [];
+        for (const u of (data.result || [])) {
+          const c = (u.message || u.my_chat_member || u.channel_post || {}).chat;
+          if (c) chats.push({ id: c.id, type: c.type, title: c.title || c.username || c.first_name });
+        }
+        return new Response(JSON.stringify({ ok: data.ok, chats }), { headers: { 'Content-Type': 'application/json' } });
+      } catch (e) {
+        return new Response(JSON.stringify({ ok: false, err: (e && e.name) + ': ' + (e && e.message) }), { headers: { 'Content-Type': 'application/json' } });
+      }
+    }
     if (url.pathname === '/api/send2') {
       try {
         const token = (env.TELEGRAM_BOT_TOKEN || '').trim();
