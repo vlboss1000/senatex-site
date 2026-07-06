@@ -1,15 +1,19 @@
 # Senatex Group — Phuket real estate landing
 
 Статический лендинг (RU / EN / TH) для Senatex Group Co., Ltd.
-Хостинг: Cloudflare Pages. Домен: senatex.site.
+Хостинг: Cloudflare Pages. Домен: https://senatex.site
 
 ## Структура
 - `index.html` — сам сайт (одностраничник, все стили и скрипты внутри).
-- `functions/api/lead.js` — Cloudflare Pages Function: принимает заявку с формы и шлёт в Telegram-группу.
-- `assets/hero.jpg` — фото для первого экрана (положить сюда с этим именем).
+- `_worker.js` — Cloudflare Pages advanced mode: POST `/api/lead` шлёт заявку в Telegram-группу, остальное отдаёт как статику.
+- `assets/` — картинки. `assets/bt-421p-1-1-scaled.png` — фото первого экрана.
 
-## Переменные окружения (Cloudflare → Pages → Settings → Environment variables)
-- `TELEGRAM_BOT_TOKEN` — токен бота от @BotFather
-- `TELEGRAM_CHAT_ID` — id группы заявок
+## Заявки в Telegram
+- Бот: **@agregatm_bot**. Группа заявок: id `-5084243161` (задан в `_worker.js`, это не секрет).
+- Токен бота — секрет, лежит в переменной окружения Cloudflare `TELEGRAM_BOT_TOKEN`
+  (Pages → Settings → Variables and Secrets). В код не коммитится.
+- Переменная `TELEGRAM_CHAT_ID` в Cloudflare больше не используется — id группы задан в коде.
 
-Секреты в код не коммитятся — только в переменные окружения Cloudflare.
+## Правки контента
+Текст меняется в `index.html` (объект переводов `T` для трёх языков + карточки каталога `DISTRICTS`).
+После push в `main` Cloudflare Pages пересобирает сайт автоматически за ~1 минуту.
