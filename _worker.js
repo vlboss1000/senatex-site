@@ -41,6 +41,13 @@ async function handleLead(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === '/api/ping') {
+      const hasTok = !!(env.TELEGRAM_BOT_TOKEN || '').trim();
+      const hasChat = !!(env.TELEGRAM_CHAT_ID || '').trim();
+      return new Response(JSON.stringify({ ok: true, hasTok, hasChat }), {
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
     if (url.pathname === '/api/lead') {
       if (request.method !== 'POST') return new Response('Method Not Allowed', { status: 405 });
       return handleLead(request, env);
