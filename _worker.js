@@ -1,8 +1,10 @@
-// Cloudflare Pages Function — принимает заявку с формы и шлёт её в Telegram-группу.
-// Секреты из переменных окружения Cloudflare (в код НЕ пишем):
+// Cloudflare Pages advanced mode — единый воркер сайта.
+// Обрабатывает POST /api/lead (заявка -> Telegram-группа), остальное отдаёт как статику.
+// Секреты берутся из переменных окружения Cloudflare (в код НЕ пишем):
 //   TELEGRAM_BOT_TOKEN — токен бота от @BotFather
 //   TELEGRAM_CHAT_ID   — id группы заявок (обычно с префиксом -100)
-export async function onRequestPost({ request, env }) {
+
+async function handleLead(request, env) {
   const json = (obj, status) =>
     new Response(JSON.stringify(obj), { status, headers: { 'Content-Type': 'application/json' } });
 
@@ -35,3 +37,15 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, reason: 'exception: ' + (e && e.message ? e.message : String(e)) }, 502);
   }
 }
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    if (url.pathname === '/api/lead') {
+      if (request.method !== 'POST') return new Response('Method Not Allowed', { status: 405 });
+      return handleLead(request, env);
+    }
+    // всё остальное — статические файлы сайта
+    return env.ASSETS.fetch(request);
+  },
+};
