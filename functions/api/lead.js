@@ -27,9 +27,10 @@ export async function onRequestPost({ request, env }) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'HTML' }),
   });
+  const tg = await r.json().catch(() => ({}));
 
-  return new Response(JSON.stringify({ ok: r.ok }), {
-    status: r.ok ? 200 : 502,
+  return new Response(JSON.stringify({ ok: !!tg.ok, reason: tg.ok ? undefined : tg.description }), {
+    status: tg.ok ? 200 : 502,
     headers: { 'Content-Type': 'application/json' },
   });
 }
