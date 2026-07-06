@@ -25,14 +25,20 @@ async function handleLead(request, env) {
       `📝 Запрос: ${esc(b.message)}\n` +
       `🌐 Язык: ${esc(b.lang)}`;
 
-    const r = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'HTML' }),
-    });
-    const tg = await r.json().catch(() => ({}));
+    let tg = {};
+    try {
+      const r = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'HTML' }),
+        signal: AbortSignal.timeout(8000),
+      });
+      tg = await r.json().catch(() => ({ ok: false, description: `bad_json_http_${r.status}` }));
+    } catch (fe) {
+      return json({ ok: false, reason: 'fetch_failed: ' + (fe && fe.name ? fe.name + ': ' + fe.message : String(fe)) }, 502);
+    }
 
-    return json({ ok: !!tg.ok, reason: tg.ok ? undefined : tg.description || `http_${r.status}` }, tg.ok ? 200 : 502);
+    return json({ ok: !!tg.ok, reason: tg.ok ? undefined : tg.description }, tg.ok ? 200 : 502);
   } catch (e) {
     return json({ ok: false, reason: 'exception: ' + (e && e.message ? e.message : String(e)) }, 502);
   }
